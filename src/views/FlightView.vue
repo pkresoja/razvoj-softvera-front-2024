@@ -25,7 +25,7 @@ function destImg() {
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <RouterLink to="/">Pocetna</RouterLink>
+                    <RouterLink to="/">Početna</RouterLink>
                 </li>
                 <li class="breadcrumb-item">
                     Detalji
@@ -72,7 +72,7 @@ function destImg() {
         </div>
         <div class="row mb-3">
             <iframe class="mx-auto" height="400"
-                :src="`https://www.google.com/maps?output=embed&amp;q=${flight.destination}`" loading="lazy"
+                :src="`https://www.google.com/maps?output=embed&amp;q=${flight.destination.split(' ')[0]}`" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade" id="gmaps"></iframe>
         </div>
     </div>
