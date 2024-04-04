@@ -15,6 +15,7 @@ const year = new Date().getFullYear()
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <NavbarLinkVue to="/" name="Home" />
+          <NavbarLinkVue to="/ticket" name="Tickets" />
           <NavbarLinkVue to="/about" name="About" />
         </ul>
       </div>
