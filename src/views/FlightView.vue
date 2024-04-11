@@ -3,6 +3,7 @@ import type { FlightModel } from '@/models/flight.model';
 import { FlightService } from '@/services/flight.service';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { destImg } from '@/utils';
 
 const route = useRoute()
 const router = useRouter()
@@ -13,11 +14,6 @@ FlightService.getFlightById(id)
     .catch(e => router.push({
         path: '/'
     }))
-
-function destImg() {
-    if (flight.value == undefined) return
-    return 'https://img.pequla.com/destination/' + flight.value.destination.toLowerCase().split(' ')[0] + '.jpg'
-}
 </script>
 
 <template>
@@ -28,16 +24,16 @@ function destImg() {
                     <RouterLink to="/">Početna</RouterLink>
                 </li>
                 <li class="breadcrumb-item">
-                    Detalji
+                    {{ flight.destination }} ({{ flight.flightNumber }})
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    {{ flight.destination }} ({{ flight.flightNumber }})
+                    Detalji
                 </li>
             </ol>
         </nav>
         <div class="row mb-3">
             <div class="col-6">
-                <img :src="destImg()" :alt="flight.destination" class="card-img-top" />
+                <img :src="destImg(flight)" :alt="flight.destination" class="card-img-top" />
             </div>
             <div class="col-6">
                 <div class="card">
@@ -66,14 +62,19 @@ function destImg() {
                         <li class="list-group-item" v-if="flight.gate">
                             Gate: <strong>{{ flight.gate }}</strong>
                         </li>
+                        <li class="list-group-item">
+                            <RouterLink class="btn btn-success" :to="`/flight/${flight.id}/book`">
+                                <i class="fa-solid fa-save"></i> Rezerviši let
+                            </RouterLink>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="row mb-3">
             <iframe class="mx-auto" height="400"
-                :src="`https://www.google.com/maps?output=embed&amp;q=${flight.destination.split(' ')[0]}`" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade" id="gmaps"></iframe>
+                :src="`https://www.google.com/maps?output=embed&amp;q=${flight.destination.split(' ')[0]}`"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="gmaps"></iframe>
         </div>
     </div>
 </template>

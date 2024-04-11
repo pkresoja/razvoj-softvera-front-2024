@@ -15,7 +15,26 @@ export class TicketService {
         return await client.get('/ticket')
     }
 
+    static async getAllAirlines() {
+        return await client.get('/airline')
+    }
+
     static async getFlightById(id: number) {
-        return await client.get('/flight/'+id)
+        return await client.get('/flight/' + id)
+    }
+
+    static async createTicket(payload: any) {
+        return await client.request({
+            method: 'post',
+            url: '/ticket',
+            data: payload
+        })
+    }
+
+    static async deleteTicket(id: number) {
+        return await client.request({
+            method: 'delete',
+            url: '/ticket/' + id
+        })
     }
 }

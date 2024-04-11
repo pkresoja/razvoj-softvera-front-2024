@@ -93,7 +93,7 @@ function search() {
                         <th scope="col">
                             <i class="fa-regular fa-clock"></i> VREME
                         </th>
-                        <th scope="col">
+                        <th scope="col" class="td-300">
                             <i class="fa-solid fa-triangle-exclamation"></i> AKCIJE
                         </th>
                     </tr>
@@ -104,10 +104,13 @@ function search() {
                         <td class="td-300">{{ flight.destination }}</td>
                         <td>{{ (flight.gate) ? flight.gate : "N/A" }}</td>
                         <td>{{ new Date(flight.scheduledAt).toLocaleString('sr') }}</td>
-                        <td>
+                        <td class="td-300">
                             <div class="btn-group">
-                                <RouterLink class="btn btn-primary" :to="'/flight/' + flight.id" title="Detalji">
+                                <RouterLink class="btn btn-primary" :to="'/flight/' + flight.id">
                                     <i class="fa-solid fa-circle-info"></i> Detalji
+                                </RouterLink>
+                                <RouterLink class="btn btn-success" :to="`/flight/${flight.id}/book`">
+                                    <i class="fa-solid fa-save"></i> Rezerviši
                                 </RouterLink>
                             </div>
                         </td>
@@ -128,6 +131,10 @@ function search() {
 <style>
 .td-300 {
     width: 300px;
+}
+
+.td-200 {
+    width: 200px;
 }
 
 .td-100 {
