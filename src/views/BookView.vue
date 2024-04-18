@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { AirlineModel } from '@/models/airline.model';
 import type { FlightModel } from '@/models/flight.model';
-import { FlightService } from '@/services/flight.service';
 import { TicketService } from '@/services/ticket.service';
 import { destImg } from '@/utils';
 import { ref } from 'vue';
@@ -17,7 +16,7 @@ const ticket = {
 
 const id = Number.parseInt(route.params.id as string)
 const flight = ref<FlightModel>()
-FlightService.getFlightById(id)
+TicketService.getFlightById(id)
     .then(rsp => {
         flight.value = rsp.data
         ticket.flightId = rsp.data.id
