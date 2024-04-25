@@ -58,7 +58,7 @@ function remove(ticket: TicketModel) {
                                 <i class="fa-solid fa-trash"></i> Obriši
                             </button>
                             <RouterLink class="btn btn-primary" :to="'/code/' + ticket.ticketId">
-                                <i class="fa-solid fa-code"></i> QRCODE
+                                <i class="fa-solid fa-code"></i> QR Code
                             </RouterLink>
                         </div>
                     </td>

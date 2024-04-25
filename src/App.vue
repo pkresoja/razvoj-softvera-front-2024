@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavbarLinkVue from './components/NavbarLink.vue';
+import { AuthService } from './services/auth.service';
 
 const year = new Date().getFullYear()
 </script>
@@ -20,7 +21,7 @@ const year = new Date().getFullYear()
         </ul>
       </div>
       <div class="navbar-text">
-        Korisnik 123
+        aaaaa
       </div>
     </div>
   </nav>
