@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Navigation from '@/components/Navigation.vue';
 import type { TicketModel } from '@/models/ticket.model'
 import { TicketService } from '@/services/ticket.service';
 import { ref } from 'vue';
@@ -6,11 +7,6 @@ import { ref } from 'vue';
 const tickets = ref<TicketModel[]>()
 TicketService.getAllTickets().then(rsp => {
     tickets.value = rsp.data
-    tickets.value?.forEach((ticket) => {
-        TicketService.getFlightById(ticket.flightId).then(frsp => {
-            ticket.flight = frsp.data
-        })
-    });
 })
 
 function remove(ticket: TicketModel) {
@@ -24,6 +20,7 @@ function remove(ticket: TicketModel) {
 </script>
 
 <template>
+    <Navigation />
     <div v-if="tickets">
         <h1 class="h3">Karte</h1>
         <table class="table table-striped table-hover">
@@ -54,10 +51,10 @@ function remove(ticket: TicketModel) {
                     <td>{{ new Date(ticket.createdAt).toLocaleString('sr') }}</td>
                     <td class="td-300">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger" @click="remove(ticket)">
+                            <button type="button" class="btn btn-sm btn-danger" @click="remove(ticket)">
                                 <i class="fa-solid fa-trash"></i> Obriši
                             </button>
-                            <RouterLink class="btn btn-primary" :to="'/code/' + ticket.ticketId">
+                            <RouterLink class="btn btn-sm btn-primary" :to="'/code/' + ticket.ticketId">
                                 <i class="fa-solid fa-code"></i> QR Code
                             </RouterLink>
                         </div>

@@ -23,6 +23,17 @@ export class MainService {
         })
     }
 
+    static async register(email: string, password: string) {
+        return await client.request({
+            url: '/user/register',
+            method: 'post',
+            data: {
+                email: email,
+                password: password
+            }
+        })
+    }
+
     static async useAxios(url: string, method: string = 'get', body: object = {}) {
         let rsp: AxiosResponse
 

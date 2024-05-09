@@ -9,10 +9,6 @@ export class TicketService {
         return await MainService.useAxios('/airline')
     }
 
-    static async getFlightById(id: number) {
-        return await MainService.useAxios(`/flight/${id}`)
-    }
-
     static async createTicket(payload: any) {
         return await MainService.useAxios('/ticket', 'post', payload)
     }

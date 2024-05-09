@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import Navigation from '@/components/Navigation.vue';
 import type { AirlineModel } from '@/models/airline.model';
 import type { FlightModel } from '@/models/flight.model';
+import { AuthService } from '@/services/auth.service';
+import { FlightService } from '@/services/flight.service';
 import { TicketService } from '@/services/ticket.service';
 import { destImg } from '@/utils';
 import { ref } from 'vue';
@@ -16,7 +19,7 @@ const ticket = {
 
 const id = Number.parseInt(route.params.id as string)
 const flight = ref<FlightModel>()
-TicketService.getFlightById(id)
+FlightService.getFlightById(id)
     .then(rsp => {
         flight.value = rsp.data
         ticket.flightId = rsp.data.id
@@ -31,9 +34,15 @@ TicketService.getAllAirlines()
         airlines.value = rsp.data
         ticket.airlineId = rsp.data[0].airlineId
     })
-    .catch(e => router.push({
-        path: '/'
-    }))
+    .catch(e => {
+        AuthService.clearAuth()
+        router.push({
+            path: '/login',
+            query: {
+                go: route.path
+            }
+        })
+    })
 
 function book() {
     TicketService.createTicket(ticket)
@@ -41,13 +50,20 @@ function book() {
             router.push({
                 path: '/ticket'
             }))
-        .catch(e => router.push({
-            path: '/'
-        }))
+        .catch(e => {
+            AuthService.clearAuth()
+            router.push({
+                path: '/login',
+                query: {
+                    go: route.path
+                }
+            })
+        })
 }
 </script>
 
 <template>
+    <Navigation />
     <div class="book" v-if="flight">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

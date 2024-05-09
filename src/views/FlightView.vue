@@ -4,6 +4,7 @@ import { FlightService } from '@/services/flight.service';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { destImg } from '@/utils';
+import Navigation from '@/components/Navigation.vue';
 
 const route = useRoute()
 const router = useRouter()
@@ -17,6 +18,7 @@ FlightService.getFlightById(id)
 </script>
 
 <template>
+    <Navigation />
     <div class="container mx-auto" v-if="flight">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -63,7 +65,7 @@ FlightService.getFlightById(id)
                             Gate: <strong>{{ flight.gate }}</strong>
                         </li>
                         <li class="list-group-item">
-                            <RouterLink class="btn btn-success" :to="`/flight/${flight.id}/book`">
+                            <RouterLink class="btn btn-sm btn-success" :to="`/flight/${flight.id}/book`">
                                 <i class="fa-solid fa-save"></i> Rezerviši let
                             </RouterLink>
                         </li>

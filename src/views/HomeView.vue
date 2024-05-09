@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Navigation from '@/components/Navigation.vue';
 import type { FlightModel } from '@/models/flight.model';
 import type { PageModel } from '@/models/page.model';
 import { FlightService } from '@/services/flight.service';
@@ -51,6 +52,7 @@ function search() {
 </script>
 
 <template>
+    <Navigation />
     <div id="home">
         <div class="input-group mb-3">
             <span class="input-group-text" id="search">
@@ -106,10 +108,10 @@ function search() {
                         <td>{{ new Date(flight.scheduledAt).toLocaleString('sr') }}</td>
                         <td class="td-300">
                             <div class="btn-group">
-                                <RouterLink class="btn btn-primary" :to="'/flight/' + flight.id">
+                                <RouterLink class="btn btn-sm btn-primary" :to="'/flight/' + flight.id">
                                     <i class="fa-solid fa-circle-info"></i> Detalji
                                 </RouterLink>
-                                <RouterLink class="btn btn-success" :to="`/flight/${flight.id}/book`">
+                                <RouterLink class="btn btn-sm btn-success" :to="`/flight/${flight.id}/book`">
                                     <i class="fa-solid fa-save"></i> Rezerviši
                                 </RouterLink>
                             </div>
