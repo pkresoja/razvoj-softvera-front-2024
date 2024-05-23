@@ -23,8 +23,8 @@ function logout() {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav" v-if="AuthService.hasAuth()">
                     <NavbarLinkVue to="/" name="Home" />
-                    <NavbarLinkVue to="/ticket" name="Tickets" />
                     <NavbarLinkVue to="/about" name="About" />
+                    <NavbarLinkVue to="/ticket" name="Tickets" />
                     <li class="nav-item">
                         <button class="nav-link" type="button" @click="logout">Logout</button>
                     </li>

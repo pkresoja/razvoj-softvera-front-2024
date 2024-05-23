@@ -14,44 +14,74 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: AboutView
+      component: AboutView,
+      meta: {
+        title: 'About'
+      }
     },
     {
       path: '/flight/:id/book',
       name: 'book',
-      component: BookView
+      component: BookView,
+      meta: {
+        title: 'Book a ticket'
+      }
     },
     {
       path: '/flight/:id',
       name: 'flight',
-      component: FlightView
+      component: FlightView,
+      meta: {
+        title: 'Details'
+      }
     },
     {
       path: '/code/:id',
       name: 'code',
-      component: CodeView
+      component: CodeView,
+      meta: {
+        title: 'Ticket'
+      }
     },
     {
       path: '/ticket',
       name: 'ticket',
-      component: TicketView
+      component: TicketView,
+      meta: {
+        title: 'Ticket List'
+      }
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      meta: {
+        title: 'Login'
+      }
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterView
+      component: RegisterView,
+      meta: {
+        title: 'Register'
+      }
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title)
+      document.title = `${to.meta.title} :: TicketBrowse`;
+  next();
 })
 
 export default router

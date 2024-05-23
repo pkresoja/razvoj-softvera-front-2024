@@ -5,6 +5,10 @@ export class TicketService {
         return await MainService.useAxios('/ticket')
     }
 
+    static async getTicketById(id: number) {
+        return await MainService.useAxios(`/ticket/${id}`)
+    }
+
     static async getAllAirlines() {
         return await MainService.useAxios('/airline')
     }
