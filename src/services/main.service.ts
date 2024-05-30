@@ -2,7 +2,7 @@ import axios, { AxiosError, type AxiosResponse } from "axios"
 import { AuthService } from "./auth.service"
 
 const client = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: import.meta.env.VITE_BACKEND_BASE_URL,
     headers: {
         'Accept': 'application/json'
     },
