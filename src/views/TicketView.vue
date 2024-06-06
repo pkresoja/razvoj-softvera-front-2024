@@ -38,6 +38,9 @@ function remove(ticket: TicketModel) {
                     <th scope="col">
                         <i class="fa-regular fa-clock"></i> REZERVISNO DANA
                     </th>
+                    <th scope="col">
+                        <i class="fa-solid fa-rotate-left"></i> TIP KARTE
+                    </th>
                     <th scope="col" class="td-300">
                         <i class="fa-solid fa-triangle-exclamation"></i> AKCIJE
                     </th>
@@ -49,6 +52,7 @@ function remove(ticket: TicketModel) {
                     <td class="td-300" v-if="ticket.flight">{{ ticket.flight.destination }}</td>
                     <td v-if="ticket.flight">{{ new Date(ticket.flight.scheduledAt).toLocaleString('sr') }}</td>
                     <td>{{ new Date(ticket.createdAt).toLocaleString('sr') }}</td>
+                    <td>{{ (ticket.return) ? 'Povratna' : 'Nepovratna' }}</td>
                     <td class="td-300">
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-danger" @click="remove(ticket)">

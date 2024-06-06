@@ -42,6 +42,7 @@ TicketService.getTicketById(id).then(rsp => {
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Destinacija: <strong>{{ ticket.flight.destination }}</strong></li>
         <li class="list-group-item">Kompanija: <strong>{{ ticket.airline.name }}</strong></li>
+        <li class="list-group-item">Tip karte: <strong>{{ (ticket.return) ? 'Povratna' : 'Nepovratna' }}</strong></li>
         <li class="list-group-item">Datum rezervacije: <strong>{{ formatDate(ticket.createdAt) }}</strong></li>
         <li class="list-group-item">Datum poletanja: <strong>{{ formatDate(ticket.flight.scheduledAt) }}</strong></li>
       </ul>
